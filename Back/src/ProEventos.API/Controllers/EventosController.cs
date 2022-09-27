@@ -1,21 +1,19 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProEvento.API.Models;
 using ProEventos.API.Data;
+using ProEvento.API.Models;
 
 namespace ProEventos.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EventoController : ControllerBase
+    public class EventosController : ControllerBase
     {
         private readonly DataContext _contex;
 
-        public EventoController(DataContext contex)
+        public EventosController(DataContext contex)
         {
             _contex= contex;
         }
