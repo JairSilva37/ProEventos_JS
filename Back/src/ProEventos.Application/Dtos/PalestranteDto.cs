@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ProEventos.Domain
+namespace ProEventos.Application.Dtos
 {
-    public class Palestrante
+    public class PalestranteDto
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -11,10 +11,8 @@ namespace ProEventos.Domain
         public string Telefone { get; set; }
         public string Email { get; set; }
 
-        public IEnumerable<RedeSocial> RedesSociais { get; set; }
+        public IEnumerable<RedeSocialDto> RedesSociais { get; set; }
 
-        public IEnumerable<PalestranteEvento> PalestrantesEventos { get; set; }
-
-
+        public IEnumerable<PalestranteDto> Palestrantes{ get; set; }
     }
 }
