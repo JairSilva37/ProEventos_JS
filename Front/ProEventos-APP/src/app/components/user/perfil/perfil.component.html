@@ -3,7 +3,7 @@
 
 <div class="card rounded shadow-sm">
 
-<form>
+<form [formGroup]="form" >
 	<div class="row p-3">
 		<div class="col-lg-3 pt-1">
 			<div class="card mb-3">
@@ -61,23 +61,48 @@
 				</div>
 				<div class="form-group col-sm-5">
 					<label>Primeiro Nome</label>
-					<input type="text" class="form-control"/>
+					<input type="text" class="form-control"
+          formControlName="primeiroNome"
+          [ngClass]="{'is-invalid': f.primeiroNome.errors && f.primeiroNome.touched}"
+          placeholder="Insira o Primeiro nome" />
+          <div class="invalid-feedback">
+            Primeiro Nome é obrigatório.
+          </div>
 
 				</div>
 				<div class="form-group col-sm-5">
 					<label>Último nome</label>
-					<input type="text" class="form-control"/>
-
+					<input type="text" class="form-control"
+          formControlName="ultimoNome"
+          [ngClass]="{'is-invalid': f.ultimoNome.errors && f.ultimoNome.touched}"
+          placeholder="Insira o Último nome" />
+          <div class="invalid-feedback">
+            Último Nome é obrigatório.
+          </div>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-sm-5">
 					<label>E-mail</label>
-					<input type="text" class="form-control" />
+					<input type="text" class="form-control"
+          formControlName="email"
+          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}"
+          placeholder="Insira o Nome Completo" />
+          <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
+            E-mail é obrigatório.
+          </div>
+          <div *ngIf="f.email.errors?.email && f.email.touched" class="invalid-feedback">
+            E-mail é inválido.
+          </div>
 				</div>
 				<div class="form-group col-sm-4">
 					<label>Telefone</label>
-					<input type="text" class="form-control" />
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid' : f.telefone.errors && f.telefone.touched }"
+          formControlName="telefone" placeholder="(00) 0000-0000">
+          <div *ngIf="f.telefone.errors?.required" class="invalid-feedback">
+            Telefone obrigatorio
+          </div>
 				</div>
 				<div class="form-group col-sm">
 					<label>Função</label>
@@ -89,7 +114,13 @@
 				</div>
 				<form-group class="col-12">
 					<label>Descrição</label>
-					<input type="text" class="form-control" />
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.descricao.errors && f.descricao.touched}"
+          formControlName="descricao" placeholder="Descrição" />
+          <div *ngIf="f.email.descricao?.required && f.descricao.touched" class="invalid-feedback">
+            Descricao é obrigatório.
+          </div>
+
 				</form-group>
 			</div>
 			<div>
@@ -99,18 +130,37 @@
 			<div class="form-row">
 				<div class="form-group col-sm">
 					<label>Senha</label>
-					<input type="password" class="form-control" />
+					<input type="password" class="form-control"
+          formControlName="senha"
+          [ngClass]="{'is-invalid': f.senha.errors && f.senha.touched}"
+          placeholder="Digite uma Senha" />
+          <div *ngIf="f.senha.errors?.required && f.senha.touched" class="invalid-feedback">
+            Senha é obrigatório.
+          </div>
+          <div *ngIf="f.senha.errors?.minlength && f.senha.touched" class="invalid-feedback">
+            Deve conter no minimo 6 caracteres.
+          </div>
 				</div>
 				<div class="form-group col-sm">
 					<label>Confirmar Senha</label>
-					<input type="password" class="form-control" />
+					<input type="password" class="form-control"
+          formControlName="confirmeSenha"
+          [ngClass]="{'is-invalid': f.confirmeSenha.errors && f.confirmeSenha.touched}"
+          placeholder="Confirme a Senha" />
+          <div *ngIf="f.confirmeSenha.errors?.required && f.confirmeSenha.touched" class="invalid-feedback">
+            Senha é obrigatório.
+          </div>
+          <div *ngIf="f.confirmeSenha.errors?.mustMatch" class="invalid-feedback">
+            Repetir a senha é obrigatorio.
+          </div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="card-footer">
 		<div class="d-flex">
-			<button class="btn btn-outline-secondary mr-auto border">
+			<button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
 				Cancelar Alteração
 			</button>
 			<button class="btn btn-success">
