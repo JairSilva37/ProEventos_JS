@@ -31,6 +31,8 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { LoteService } from './services/lote.service';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 
 
@@ -71,9 +73,13 @@ defineLocale('pt-br', ptBrLocale);
       progressBar:true
     }),
     NgxSpinnerModule,
+    NgxCurrencyModule,
     BsDatepickerModule.forRoot()
   ],
-  providers: [EventoService],
+  providers: [
+    EventoService,
+    LoteService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
