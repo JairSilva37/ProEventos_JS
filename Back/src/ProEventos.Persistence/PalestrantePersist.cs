@@ -23,7 +23,7 @@ namespace ProEventos.Persistence
                 query=query.Include(x => x.PalestrantesEventos)
                     .ThenInclude(x => x.Evento);
             }
-            query= query.AsNoTracking().OrderBy(x => x.Id).Where(x=>x.Nome.ToLower().Contains(nome.ToLower()));
+            query= query.AsNoTracking().OrderBy(x => x.Id).Where(x=>x.User.PrimeiroNome.ToLower().Contains(nome.ToLower()));
 
             return await query.ToArrayAsync();
         }
